@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-mongoose.connect('mongodb://localhost/sprint2',{useNewUrlParser: true});
+mongoose.connect('mongodb://localhost/login',{useNewUrlParser: true});
 const Schema = mongoose.Schema;
 const UserDetail = new Schema({
 	    username: String,
