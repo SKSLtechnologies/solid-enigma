@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 /*-- a module to save cookies --*/
 const cookieParser = require('cookie-parser');
 
+var path = require("path");
+
 /*-- Returns middleware that only parses urlencoded bodies and only json respectively
 and only looks at requests where the Content-Type header matches the type option. --*/
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -29,6 +31,15 @@ mongoose.connect(dbConfig.url, {
     process.exit();
 });
 
-app.listen(3000, function(){
-  console.log('Listening to port 3000');
+// Require users routes
+require('./app/routes/index.routes.js')(app);
+app.get('/home', function(req, res) {
+  res.sendFile(path.join( __dirname+'/app/views/login.html'));
 });
+
+/*-- we use process.env.PORT to set the port to the environment port variable if it exists. 
+Otherwise, we’ll default to 3000, which is the port we’ll be using locally. 
+This gives you enough flexibility to switch from development, directly to a production environment 
+where the port might be set by a service provider like, for instance, Heroku */
+const port = process.env.PORT || 3000;
+app.listen(port , () => console.log('App listening on port ' + port));
