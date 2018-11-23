@@ -1,7 +1,7 @@
 {
   "name": "login",
   "version": "1.0.0",
-  "description": "",
+  "description": "Login App",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,26 +9,34 @@
   "author": "Anannya",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "*",
-    "bluebird": "^3.5.2",
-    "body-parser": "*",
-    "connect-flash": "*",
+    "axios": "*",
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.3",
+    "body-parser": "^1.18.3",
+    "connect-flash": "^0.1.1",
     "cookie-parser": "*",
     "ejs": "^2.6.1",
     "express": "4.16.4",
+    "express-handlebars": "*",
     "express-messages": "*",
     "express-session": "*",
-    "express-handlebars": "*",
     "express-validator": "^5.3.0",
+    "jsonwebtoken": "*",
     "mongodb": "*",
     "mongodb-bluebird": "^0.1.2",
     "mongoose": "*",
     "nodemon": "^1.18.4",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "axios": "*",
     "passport-jwt": "*",
-    "passport-token": "*",
-    "jsonwebtoken": "*"
-  }
+    "passport-local": "^1.0.0",
+    "passport-token": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smi8/solid-enigma.git"
+  },
+  "bugs": {
+    "url": "https://github.com/smi8/solid-enigma/issues"
+  },
+  "homepage": "https://github.com/smi8/solid-enigma#readme"
 }
