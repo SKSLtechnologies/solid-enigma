@@ -44,25 +44,25 @@ mongoose.connect(dbConfig.url, {
 //   res.sendFile(path.join( __dirname+'/app/views/login.html'));
 // });
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+// var routes = require('./routes/index');
+// var users = require('./routes/users');
 
-app.set('views', path.join(__dirname, 'views')
-app.engine('handlebars', expressHandlebars({defaultLayout: 'layout'}))
-app.set('view engine', 'handlebars')
+// app.set('views', path.join(__dirname, 'views')
+// app.engine('handlebars', expressHandlebars({defaultLayout: 'layout'}))
+// app.set('view engine', 'handlebars')
 
 
-app.use(express.static(path.join(__dirname, 'public')))
+// app.use(express.static(path.join(__dirname, 'public')))
 
-app.use(session({
-	secret: 'SmoojiePoojie',
-	saveUnitialized: true,
-	resave: true
-}))
+// app.use(session({
+// 	secret: 'SmoojiePoojie',
+// 	saveUnitialized: true,
+// 	resave: true
+// }))
 
-app.use(expressValidator({
-	errorFormatter: function(param,masg)
-}))
+// app.use(expressValidator({
+// 	errorFormatter: function(param,masg)
+// }))
 
 /*-- we use process.env.PORT to set the port to the environment port variable if it exists. 
 Otherwise, we’ll default to 3000, which is the port we’ll be using locally. 
