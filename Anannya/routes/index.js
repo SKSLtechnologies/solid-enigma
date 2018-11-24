@@ -2,8 +2,12 @@ var express = require('express');
 var router = express.Router();
 const jwt = require('jsonwebtoken');
 
+// var token = req.cookies.auth;
+
+//var checkAuth = require('../models/user');
+
 //Get homepage
-router.get('/',ensureAuthentication,function(req,res){
+router.get('/',ensureAuthentication,verifyToken,function(req,res){
     res.render('index');
 });
 
@@ -39,14 +43,31 @@ function ensureAuthentication(req,res,next){
 }
 
 // function verifyToken(req,res,next){
-//     jwt.verify(req.query.token, 'shh',(err,authUser)=> {
-//       if (err){
-//        //res.sendStatus(403);
-//       }else{
-//         console.log(authUser + "trying access");
-//         next();
-//       }
-//     });
+//     console.log("In Verify")
+//     // jwt.verify(req.body.token, 'secretkey',(err,authUser)=> {
+//     //   if (err){
+//     //     console.log('error in verifyToken');
+//     //     console.log(err);
+//     //    //res.sendStatus(403);
+//     //   }else{
+//     //     console.log(authUser + "trying access");
+//     //     next();
+//     //   }
+//     // });
 // }
+function verifyToken(req,res,next){
+
+    jwt.verify(req.session.token, 'secretkey',(err,authUser)=> {
+      if (err){
+        console.log("hello " + req.session.token);
+        res.sendStatus(403);
+      }else{
+        console.log(authUser + "trying access");
+    next();
+      }
+    });
+
+    // next()
+}
 
 module.exports = router;

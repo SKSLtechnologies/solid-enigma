@@ -4,6 +4,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+// var cookieParser = require('cookie-parser')
+// app.use(cookieParser());
 
 var User = require('../models/user');
 
@@ -172,15 +174,10 @@ passport.use(new LocalStrategy(
              { return done(null, false, {message:'Incorrect Username'}); }
             User.comparePassword(password,user.password,function(err,isMatch){
                 if(err) throw err;
-                if(isMatch){
-                //    const token = jwt.sign({
-                //         username: user.username,
-                //         password: user.password
-                //     }, secretkey,{expiresIn: 60});
-                //     console.log(token);
+                if(isMatch){                 
                     return done(null,user,{message:'Access Granted'
                                             //,token: token
-                                        });
+                    });
                 }
                 else{
                     return done(null,false,{message:'Invalid Password'});
@@ -202,23 +199,30 @@ passport.deserializeUser(function(id, done) {
 });
 
 router.post('/login',
-    passport.authenticate('local',{successRedirect: '/', failureRedirect: "/users/login",failureFlash: true}),
+    passport.authenticate('local',{failureRedirect: "/users/login",failureFlash: true}),
     function(req,res){
+        const token = jwt.sign({
+            username: req.username,
+            password: req.password
+        }, 'secretkey',{expiresIn : 60});
+      console.log(token);
+      console.log('creating token');
+      req.session.token = token;
+      console.log(req.session.token);
       res.redirect('/');
 });
 
 //Get logout
 router.get('/logout', function(req,res){
     req.logout();
-    // req.session.destroy(function(err) {
-    //     if(err) throw err;
-        res.redirect('/users/login');
-    //     });
-   req.flash('success_msg','You are logged out');  
+    req.session.destroy(function(err) {
+        if(err) throw err;
+        res.redirect('/');
+        });
+    
+    console.log("in logout")
+ //  req.flash('success_msg','You are logged out');  
 });
-
-
-
 
 
 

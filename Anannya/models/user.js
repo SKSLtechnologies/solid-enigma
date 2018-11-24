@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+
 mongoose.connect('mongodb://localhost/login',{useNewUrlParser: true});
 const Schema = mongoose.Schema;
 const UserDetail = new Schema({
@@ -40,12 +41,15 @@ module.exports.getUserById = function(id,cb){
 
 // module.exports.checkAuth = function(req,res,next){
 //     try{
-//           const dec = jwt.verify(req.body.token,secretkey);
+//         const token = req.headers.authorization;
+//         console.log('token ' + token);
+//           const dec = jwt.verify(token,'secretkey');
 //           req.userData = dec;
+//           console.log("hi");
 //           next();
-//       }catch(error){
-//           console.log("Auth failed");
-//       }
+//          }catch(error){
+//         console.log("Auth failed");
+//     }
 // }
 
 
