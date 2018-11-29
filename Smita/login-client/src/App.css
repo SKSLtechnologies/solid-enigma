@@ -1,0 +1,53 @@
+.App {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.66) 100%, transparent), url(https://wallpaper-house.com/data/out/10/wallpaper2you_410534.jpg);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+}
+
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+ 
+.is-loading {
+  opacity: 0;
+}
+
+         h1:before,
+         h1:after {
+         height: 2px;
+         width: 100%;
+         content: "";
+         background: white;
+         display: block;
+         position: absolute;
+         transition: width 0.4s ease;
+         transition-delay: 0.8s;
+         }
+         h1:before {
+         top: 0;
+         left: 0;
+         }
+         h1:after {
+         bottom: 0;
+         right: 0;
+         }
+
+
