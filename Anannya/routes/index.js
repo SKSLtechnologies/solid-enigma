@@ -7,6 +7,20 @@ router.get('/', verifyToken, function(req, res) {
     res.render('index');
 });
 
+//Get profile
+router.get('/users/user',verifyToken, function(req,res){
+    res.render('user');
+});
+
+//Get attendance
+router.get('/users/attendance',verifyToken, function(req,res){
+    res.render('attd');
+});
+
+//Get apply
+router.get('/users/apply',verifyToken, function(req,res){
+    res.render('apply');
+});
 
 function verifyToken(req, res, next) {
 

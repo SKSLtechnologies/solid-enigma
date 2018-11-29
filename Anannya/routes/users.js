@@ -204,13 +204,14 @@ router.post('/login',
         const token = jwt.sign({
             username: req.username,
             password: req.password
-        }, 'secretkey',{expiresIn : 60});
+        }, 'secretkey',{expiresIn : 120});
       console.log(token);
       console.log('creating token');
       req.session.token = token;
       console.log(req.session.token);
       res.redirect('/');
 });
+
 
 //Get logout
 router.get('/logout', function(req,res){
