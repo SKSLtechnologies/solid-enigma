@@ -204,12 +204,21 @@ router.post('/login',
         const token = jwt.sign({
             username: req.username,
             password: req.password
-        }, 'secretkey',{expiresIn : 120});
+        }, 'secretkey',{expiresIn : 30});
       console.log(token);
       console.log('creating token');
       req.session.token = token;
       console.log(req.session.token);
-      res.redirect('/');
+      console.log(req.session.cookie);
+      if (req.user.checkAdmin == true){
+          res.redirect('/users/user');
+          console.log("Hello Admin");
+          console.log(req.user.checkAdmin);
+      }else{
+        res.redirect('/');
+        console.log("Hello User");
+        console.log(req.user.checkAdmin);
+      }
 });
 
 
@@ -219,13 +228,11 @@ router.get('/logout', function(req,res){
     req.session.destroy(function(err) {
         if(err) throw err;
         res.redirect('/');
-        });
-    
-    console.log("in logout")
- //  req.flash('success_msg','You are logged out');  
+    });
+   
+    console.log("in logout");
+    //req.flash('success_msg','You are logged out');  
 });
-
-
 
 
 module.exports = router;
