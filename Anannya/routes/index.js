@@ -2,16 +2,23 @@ var express = require('express');
 var router = express.Router();
 const jwt = require('jsonwebtoken');
 
+var User = require('../models/user');
+
 //Get homepage
 router.get('/', verifyToken, function(req, res) {
     res.render('index');
+});  
+
+//Get user profile
+router.get('/users/user',verifyToken, function(req,res){  
+     res.render('user');  
+     console.log("This is " + req.user.username);
 });
 
-//Get profile
-router.get('/users/user',verifyToken, function(req,res){
-    res.render('user');
+//Get admin profile
+router.get('/users/admin',verifyToken, function(req,res){
+    res.render('admin');
 });
-
 //Get attendance
 router.get('/users/attendance',verifyToken, function(req,res){
     res.render('attd');

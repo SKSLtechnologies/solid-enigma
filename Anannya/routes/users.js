@@ -171,7 +171,8 @@ passport.use(new LocalStrategy(
         User.findOne({username: username}, function(err, user) {
             if (err) throw err; 
             if (!user)
-             { return done(null, false, {message:'Incorrect Username'}); }
+             { 
+            return done(null, false, {message:'Incorrect Username'}); }
             User.comparePassword(password,user.password,function(err,isMatch){
                 if(err) throw err;
                 if(isMatch){                 
@@ -204,19 +205,17 @@ router.post('/login',
         const token = jwt.sign({
             username: req.username,
             password: req.password
-        }, 'secretkey',{expiresIn : 30});
+        }, 'secretkey',{expiresIn : 60});
       console.log(token);
       console.log('creating token');
       req.session.token = token;
       console.log(req.session.token);
       console.log(req.session.cookie);
       if (req.user.checkAdmin == true){
-          res.redirect('/users/user');
-          console.log("Hello Admin");
-          console.log(req.user.checkAdmin);
+        res.redirect('/users/admin');
+         console.log(req.user.checkAdmin);
       }else{
-        res.redirect('/');
-        console.log("Hello User");
+        res.redirect('/users/user');
         console.log(req.user.checkAdmin);
       }
 });

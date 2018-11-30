@@ -4,7 +4,7 @@
 <!-- ---- Include the above in your HEAD tag -------- -->
 
 <head>
-  <title>Bootstrap Example</title>
+  <title>User Page</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -16,7 +16,8 @@
 <hr>
 <div class="container bootstrap snippet">
     <div class="row">
-  		<div class="col-sm-10"><h1>User Name</h1></div>
+  		<div class="col-sm-10"><h3>User: {{user.username}} !</h3>
+        </div>
     	<div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a></div>
     </div>
     <div class="row">
@@ -25,8 +26,8 @@
 
       <div class="text-center">
         <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-        <h5>Hello User !</h5>
-
+        <h6>Upload a different photo...</h6>
+        <input type="file" class="text-center center-block file-upload">
       </div></hr><br>
 
                
@@ -68,7 +69,7 @@
                          <label>User Id</label>
                       </div>
                       <div class="col-md-6">
-                         <p>Kshiti123</p>
+                         <p>{{user._id}}</p>
                        </div>
                 </div>
                 <div class="row">
@@ -76,7 +77,7 @@
                         <label>Name</label>
                     </div>
                     <div class="col-md-6">
-                     <p>Kshiti Ghelani</p>
+                     <p>{{user.username}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -84,9 +85,25 @@
                       <label>Email</label>
                     </div>
                     <div class="col-md-6">
-                        <p>kshitighelani@gmail.com</p>
+                        <p>{{user.email}}</p>
                     </div>
-                </div>         
+                </div>    
+                <div class="row">
+                    <div class="col-md-6">
+                      <label>Contact Number</label>
+                    </div>
+                    <div class="col-md-6">
+                        <p> </p>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="col-md-6">
+                      <label>Address </label>
+                    </div>
+                    <div class="col-md-6">
+                        <p> </p>
+                    </div>
+                </div>            
             </div><!--/tab-pane-->
 
             <div class="tab-pane" id="leaveAppl">
@@ -95,13 +112,13 @@
                       <div class="form-group">
                           <div class="col-xs-6">
                               <label for="leaveFrom"><h4>Leave From</h4></label>
-                              <input type="text" class="form-control" name="leaveFrom" id="leaveFrom" placeholder="Leave From" title="enter your first name if any.">
+                              <input type="date" class="form-control" name="leaveFrom" id="leaveFrom" placeholder="Leave From" title="Leave starts from">
                           </div>
                       </div>
                       <div class="form-group">
                           <div class="col-xs-6">
                             <label for="leaveTo"><h4>Leave To</h4></label>
-                              <input type="text" class="form-control" name="leaveTo" id="leaveTo" placeholder="Leave To" title="enter your last name if any.">
+                              <input type="date" class="form-control" name="leaveTo" id="leaveTo" placeholder="Leave To" title="Leave ends on">
                           </div>
                       </div>
                       <div class="form-group">      
