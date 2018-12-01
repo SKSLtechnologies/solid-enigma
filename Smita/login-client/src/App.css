@@ -26,28 +26,6 @@
   }
 }
  
-.is-loading {
-  opacity: 0;
-}
 
-         h1:before,
-         h1:after {
-         height: 2px;
-         width: 100%;
-         content: "";
-         background: white;
-         display: block;
-         position: absolute;
-         transition: width 0.4s ease;
-         transition-delay: 0.8s;
-         }
-         h1:before {
-         top: 0;
-         left: 0;
-         }
-         h1:after {
-         bottom: 0;
-         right: 0;
-         }
 
 
