@@ -228,7 +228,6 @@ router.get('/logout', function(req,res){
         if(err) throw err;
         res.redirect('/');
     });
-   
     console.log("in logout");
     //req.flash('success_msg','You are logged out');  
 });
