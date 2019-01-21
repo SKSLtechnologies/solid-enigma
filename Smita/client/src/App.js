@@ -12,102 +12,106 @@ import CloseIcon from "@material-ui/icons/Close";
 
 import Form from "./Form";
 
-const TodosQuery = gql`
+const UsersQuery = gql`
   {
-    todos {
+    users {
       id
-      text
-      complete
+      username
+      email
+      checkAdmin
     }
   }
 `;
 
 const UpdateMutation = gql`
-  mutation($id: ID!, $complete: Boolean!) {
-    updateTodo(id: $id, complete: $complete)
+  mutation($id: ID!, $checkAdmin: Boolean!) {
+    updateUser(id: $id, checkAdmin: $checkAdmin)
   }
 `;
 
 const RemoveMutation = gql`
   mutation($id: ID!) {
-    removeTodo(id: $id)
+    removeUser(id: $id)
   }
 `;
 
-const CreateTodoMutation = gql`
-  mutation($text: String!) {
-    createTodo(text: $text) {
+const CreateUserMutation = gql`
+  mutation($username: String!, $email: String!, $checkAdmin:Boolean!) {
+    createUser(username: $username, email: $email, checkAdmin: $checkAdmin) {
       id
-      text
-      complete
+      username
+      email
+      checkAdmin
     }
   }
 `;
 
 class App extends Component {
-  updateTodo = async todo => {
-    // update todo
-    await this.props.updateTodo({
+  updateUser = async user => {
+    // update user
+    await this.props.updateUser({
       variables: {
-        id: todo.id,
-        complete: !todo.complete
+        id: user.id,
+        checkAdmin: !user.checkAdmin
       },
       update: store => {
         // Read the data from our cache for this query.
-        const data = store.readQuery({ query: TodosQuery });
+        const data = store.readQuery({ query: UsersQuery });
         // Add our comment from the mutation to the end.
-        data.todos = data.todos.map(
+        data.users = data.users.map(
           x =>
-            x.id === todo.id
+            x.id === user.id
               ? {
-                  ...todo,
-                  complete: !todo.complete
+                  ...user,
+                  checkAdmin: !user.checkAdmin
                 }
               : x
         );
         // Write our data back to the cache.
-        store.writeQuery({ query: TodosQuery, data });
+        store.writeQuery({ query: UsersQuery, data });
       }
     });
   };
 
-  removeTodo = async todo => {
-    // remove todo
-    await this.props.removeTodo({
+  removeUser = async user => {
+    // remove user
+    await this.props.removeUser({
       variables: {
-        id: todo.id
+        id: user.id
       },
       update: store => {
         // Read the data from our cache for this query.
-        const data = store.readQuery({ query: TodosQuery });
+        const data = store.readQuery({ query: UsersQuery });
         // Add our comment from the mutation to the end.
-        data.todos = data.todos.filter(x => x.id !== todo.id);
+        data.users = data.users.filter(x => x.id !== user.id);
         // Write our data back to the cache.
-        store.writeQuery({ query: TodosQuery, data });
+        store.writeQuery({ query: UsersQuery, data });
       }
     });
   };
 
-  createTodo = async text => {
-    // create todo
-    await this.props.createTodo({
+  createUser = async (username, email, checkAdmin)  => {
+    // create user
+    await this.props.createUser({
       variables: {
-        text
+        username,
+        email, 
+        checkAdmin
       },
-      update: (store, { data: { createTodo } }) => {
+      update: (store, { data: { createUser } }) => {
         // Read the data from our cache for this query.
-        const data = store.readQuery({ query: TodosQuery });
+        const data = store.readQuery({ query: UsersQuery });
         // Add our comment from the mutation to the end.
-        data.todos.unshift(createTodo);
+        data.users.unshift(createUser);
         // Write our data back to the cache.
-        store.writeQuery({ query: TodosQuery, data });
+        store.writeQuery({ query: UsersQuery, data });
       }
     });
   };
 
   render() {
     const {
-      data: { loading, todos }
+      data: { loading, users }
     } = this.props;
     if (loading) {
       return null;
@@ -117,24 +121,24 @@ class App extends Component {
       <div style={{ display: "flex" }}>
         <div style={{ margin: "auto", width: 400 }}>
           <Paper elevation={1}>
-            <Form submit={this.createTodo} />
+            <Form submit={this.createUser} />
             <List>
-              {todos.map(todo => (
+              {users.map(user => (
                 <ListItem
-                  key={todo.id}
+                  key={user.id}
                   role={undefined}
                   dense
                   button
-                  onClick={() => this.updateTodo(todo)}
+                  onClick={() => this.updateUser(user)}
                 >
                   <Checkbox
-                    checked={todo.complete}
+                    checked={user.checkAdmin}
                     tabIndex={-1}
                     disableRipple
                   />
-                  <ListItemText primary={todo.text} />
+                  <ListItemText primary={user.email} />
                   <ListItemSecondaryAction>
-                    <IconButton onClick={() => this.removeTodo(todo)}>
+                    <IconButton onClick={() => this.removeUser(user)}>
                       <CloseIcon />
                     </IconButton>
                   </ListItemSecondaryAction>
@@ -149,8 +153,8 @@ class App extends Component {
 }
 
 export default compose(
-  graphql(CreateTodoMutation, { name: "createTodo" }),
-  graphql(RemoveMutation, { name: "removeTodo" }),
-  graphql(UpdateMutation, { name: "updateTodo" }),
-  graphql(TodosQuery)
+  graphql(CreateUserMutation, { name: "createUser" }),
+  graphql(RemoveMutation, { name: "removeUser" }),
+  graphql(UpdateMutation, { name: "updateUser" }),
+  graphql(UsersQuery)
 )(App);

@@ -22,19 +22,39 @@ const User = mongoose.model("User", {
   checkAdmin: Boolean
 });
 
+const Application = mongoose.model("Application", {
+  from: String,
+  to: String,
+  reason: String,
+  approved: Boolean,
+  applied_by: String
+});
+
 const typeDefs = `
   type Query {
     hello(name: String): String!
     users: [User]
+    applications: [Application]
   }
+
+  type Application {
+    id: ID!
+    from: String!
+    to: String!
+    reason: String!
+    approved: Boolean!
+    applied_by: ID!
+  }
+
   type User {
     id: ID!
     username: String!
     email: String!
-    checkAdmin: Boolean!
+    checkAdmin: Boolean
   }
   type Mutation {
     createUser(username: String!, email: String!, checkAdmin: Boolean): User
+    createApplication(from: String!, to:String!, reason:String!, approved:Boolean!, applied_by:ID!): Application
     removeUser(id: ID!): Boolean
     updateUser(id: ID!, checkAdmin: Boolean!): Boolean
   }
@@ -43,7 +63,8 @@ const typeDefs = `
 const resolvers = {
   Query: {
     hello: (_, { name }) => `Hello ${name || "World"}`,
-    users: () => User.find()
+    users: () => User.find(),
+    applications: () => Application.find()
   },
   Mutation: {
     createUser: async (_, { username, email, checkAdmin }) => {
@@ -51,6 +72,11 @@ const resolvers = {
       await user.save();
       return user;
     }, 
+    createApplication: async(_, {from, to, reason, approved, applied_by}) => {
+      const application = new Application ({from, to, reason, approved, applied_by});
+      await application.save();
+      return application;
+    },
     removeUser: async (_, { id }) => {
       await User.findByIdAndRemove(id);
       return true;
