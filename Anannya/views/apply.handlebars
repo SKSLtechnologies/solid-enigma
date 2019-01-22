@@ -25,7 +25,7 @@ type='text/javascript'></script> --}}
         <div class="col-md-4 order-md-2 mb-4">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="yel">Your Leave Balance</span>
-            <span id="totLvBalbal" class="badge badge-secondary badge-pill">{{user.totLvBal}}</span>
+            <span name="totLvBal" id="totLvBal"class="badge badge-secondary badge-pill">{{user.totLvBal}}</span>
           </h4>
           <hr>
           <ul class="list-group mb-3">
@@ -56,18 +56,18 @@ type='text/javascript'></script> --}}
                 <h6 class="my-0">Total Leaves Taken</h6>
                 <small class="text-muted">Leaves this year</small>
               </div>
-              <span class="text-muted" id="totLeaveBal" >{{user.totLvTkn}}</span>
+              <span class="text-muted" id="totLvTkn" name="totLvTkn" >{{user.totLvTkn}}</span>
            </li>
             <li class="list-group-item d-flex justify-content-between bg-light">
               <div class="text-success">
                 <h6 class="my-0">Applied Leaves</h6>
                 <small>Number of leaves applied for</small>
               </div>
-              <span class="text-success" id="result">0</span>
+              <span class="text-success" id="result" name="result">0</span>
             </li>
             <li class="list-group-item d-flex justify-content-between">
               <span>Leaves Remaining</span>
-              <span id="remaining" ><strong>0</strong></span>
+              <span id="remaining" name="remaining"><strong>0</strong></span>
             </li>
           </ul>
              <center>
@@ -259,12 +259,12 @@ $(function() {
      // var arr[] = user.leaveBal;
               
       $('#refresh').on('click',function cal(){
-        var tot =  $('.totLvBal').val(),
+        var tot =  $('#totLvBal').val(),
             appl = $('#result').val();
         var rem = tot-appl;   
        // 
         alert(tot);
-        $('#remaining').text(tot); 
+        $('#remaining').text(typeof tot); 
         
       });
 
