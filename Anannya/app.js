@@ -17,7 +17,7 @@ const jwt = require('jsonwebtoken');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-//Init App
+//Init App 
 var app = express();
 
 //view engine

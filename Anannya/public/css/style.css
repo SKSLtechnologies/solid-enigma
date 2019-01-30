@@ -143,6 +143,7 @@ body {
   background-repeat: no-repeat ;
   background-image: url("https://hdwallsource.com/img/2015/3/wonderful-hipster-wallpaper-47212-48729-hd-wallpapers.jpg");
   background-position:center; background-size:cover;
+  overflow: hidden;
   /* background-image: linear-gradient( rgb(219, 85, 107), rgb(241, 239, 92)); */
 }
 
@@ -349,7 +350,7 @@ body {
   padding : 2%;
 
 }
-
+/* 
 .wrapper { display: -webkit-box;
   display: -ms-flexbox; 
   display: flex;
@@ -535,13 +536,23 @@ display: -ms-flexbox; display: flex;
     -ms-flex-pack: start; justify-content: flex-start; -webkit-box-align: center; -ms-flex-align: center; align-items: center; -ms-flex-line-pack: center; 
     align-content: center; font-size: 18px; word-wrap: break-word; word-break: break-word; }
 
-
+ */
 
     table {
       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
       border-collapse: collapse;
       width: 100%;
+      background-color: #ced11d;
     }
-    tr:nth-child(even) {
+    /* tr:nth-child(even) {
       background-color: #eec0d3;
     }
+    tr:nth-child(odd) {
+      background-color: #fff;
+    } */
+
+.ui-datepicker {
+  background-color: rgba(221, 109, 131, 0.979);
+  border: 1px black;
+  border-style: solid 2px black;
+}
