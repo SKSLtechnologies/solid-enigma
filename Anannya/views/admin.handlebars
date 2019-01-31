@@ -171,15 +171,21 @@
                              <tbody>
                 <ul>
                    {{#each user}}
+                   
+                    {{!-- {{#each lvappl}}
+                    {{#if this.status}} --}}
                     <tr>
+                    
                         <th><input type="checkbox" class="checkUser" id="checkbox" scope="row" data-id ={{user.username}}></th>
                         <td>{{@index}}</td>
-                        <td>{{this.lvappl.[0].applno}}</td>
+                        <td>{{this.applno}}</td>
                         <td>{{this.username}}</td>
-                        <td>{{this.lvappl.fromDate}} </td>
-                        <td>{{this.lvappl.toDate}} </td> 
+                        <td>{{this.emp_cd}} </td>
+                        <td>{{this.toDate}} </td> 
                         <td><a href="#show" class="showUser" data-id = {{user.username}} > SHOW </a></td>
                      </tr>
+                     {{!-- {{/if}}
+                     {{/each}} --}}
                     {{/each}}
                </ul>
               </tbody>

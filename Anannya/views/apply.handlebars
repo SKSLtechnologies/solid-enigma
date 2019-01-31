@@ -67,11 +67,11 @@ type='text/javascript'></script> --}}
             </li>
             <li class="list-group-item d-flex justify-content-between">
               <span>Leaves Remaining</span>
-              <span id="remaining" name="remaining"><strong>0</strong></span>
+              <span id="remaining" name="remaining" ><strong>0</strong></span>
             </li>
           </ul>
              <center>
-              <button type="submit" id="refresh" onclick="cal()" class="btn btn-success">Refresh</button>
+              <button type="submit" id="refresh" onclick="cal()" class="btn btn-success" data-id = "{{user.totLvBal}}">Refresh</button>
             </center> 
         </div>
 
@@ -206,6 +206,7 @@ type='text/javascript'></script> --}}
 <script>
 
 $(function() {
+  var diffr;
        $("#fromDate").datepicker({
          minDate: 0,
          onClose: function(selectedDate) {
@@ -219,7 +220,7 @@ $(function() {
          onClose: function(){
          var fromDate = $('#fromDate').val(),
            toDate = $('#toDate').val(),
-           from, to, duration,diffr,total;
+           from, to, duration,total;
           
          from = moment(fromDate, 'MM-DD-YYYY');
          to = moment(toDate, 'MM-DD-YYYY');
@@ -245,6 +246,7 @@ $(function() {
           var sfromDate = $('#stnout').val(),
            stoDate = $('#stnin').val(),
            sfrom, sto, sduration,sdiffr;
+           
 
            sfrom = moment(sfromDate, 'MM-DD-YYYY');
            sto = moment(stoDate, 'MM-DD-YYYY');
@@ -259,14 +261,23 @@ $(function() {
      // var arr[] = user.leaveBal;
               
       $('#refresh').on('click',function cal(){
-      //  $('#remaining').text($(this).data('id'));
-        var tot =  $('#totLvBal').val(),
-             appl = $('#result').val();
-             var tol = tot.val
-        var rem = tot-appl;   
+        var tot = $(this).data('id');
+        var appl = $('#result').val();
+        
+
+        var rem = tot-appl;
        
-        alert(tot);
-        $('#remaining').text(typeof tot); 
+       // var appl = document.getElementById("result").value;
+         //alert(tot-diffr);
+         //alert('rem val ' + rem)
+        // $('#remaining').text($(this).data('id'));
+         //var tot =  $('#totLvBal').val(),
+         //   appl = $('#result').val();
+             
+         //var rem = tot-appl;   
+       
+         //alert(tot);
+        $('#remaining').text(tot - diffr); 
         
       });
 

@@ -24,14 +24,16 @@
             {{!-- <% if(user != undefined){ %> --}}
                 {{#if user.checkAdmin}}
                      <a class="nav-link" href="/users/admin">Admin Profile</a>
+                     
                 {{else}}
                      <a class="nav-link" href="/users/user">Profile</a>
-                     <a class="nav-link" href="/users/apply">Apply Leaves</a>
+                     
                 {{/if}}
                
                 {{!-- <a class="nav-link" href="/users/attendance">My Attendance</a>
                 <a class="nav-link" href="/users/leavePending">Leaves Pending</a>
                 <a class="nav-link" href="/users/leaveApproved">Leaves Approved</a> --}}
+                <a class="nav-link" href="/users/apply">Apply Leaves</a>
                 <a class="nav-link" href="/users/logout">Logout</a>
                {{else}}
                {{!-- <% }else{ %> --}}

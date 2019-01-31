@@ -139,7 +139,7 @@
                                         <td>{{this.leaveType}}</td>
                                         <td>{{this.fromDate}}</td>
                                         <td>{{this.toDate}}</td>
-                                        <td>Pending</td>   
+                                        <td>{{this.status}}</td>   
                                     </tr>                                 
                                  {{/each}}
                                 </ul>   
@@ -166,7 +166,14 @@
                <div class="win">
                    <h4>Status</h4>
                    <hr>
-                   <h5>Your leave application no. {{user.lvappl.applno}} dated (..) is pending for approval.</h5>
+                   <p>Your leave application no. </p>
+                                  {{#each user.lvappl}} 
+                                    {{#if this.status}}
+                                    <p><strong># {{this.applno}} </strong> dated <strong>{{this.fromDate}}</strong> to <strong>{{this.toDate}}</strong></p>
+                                    {{/if}}      
+                                 {{/each}}
+                             <p> is pending for approval.</p>
+                                  
                </div>
                </div>
         </div><!--/tab-pane-->

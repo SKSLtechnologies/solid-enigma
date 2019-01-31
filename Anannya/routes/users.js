@@ -259,7 +259,8 @@ router.post('/apply',function(req,res){
                 'stnin'  : req.body.stnin,
                 'chargeTakenBy' : req.body.chargeTakenBy,
                 'reason' : req.body.reason,
-                'rejoinDate' : req.body.rejoinDate
+                'rejoinDate' : req.body.rejoinDate,
+                'status' : "Pending"
                 };
 
     console.log( req.user.username +" applying");
